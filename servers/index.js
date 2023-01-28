@@ -5,17 +5,23 @@ import dotenv from "dotenv";
 
 import ConnectDB from "./database/connection";
 
+import Auth from "./api/auth";
+
 dotenv.config();
 
 const zomato = express();
 
 zomato.use(express.json());
 
-zomato.get("/", (req,res) => {
+zomato.get("/", (req, res) => {
     res.json({
         message: "Server is running",
     });
 });
+
+// /auth/signup
+
+zomato.use("/auth", Auth);
 
 const PORT = 4000;
 
